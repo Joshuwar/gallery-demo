@@ -34,7 +34,7 @@ $image-height: 300px;
 		transition: all 0.3s ease;
 		top: -300%;
 		// width: 90%;
-		padding: 40px;
+		padding: 20px;
 		background-color: white;
 		position: relative;
 		display: inline-block;
@@ -54,7 +54,6 @@ $image-height: 300px;
 	top: 50%;
 	margin-top: -($image-height/2);
 	.image-wrapper {
-		width: 6000px;
 		position: relative;
 		left: 0;
 		white-space: none;

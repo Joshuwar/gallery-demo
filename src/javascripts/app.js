@@ -1,10 +1,26 @@
 
 jQuery(document).ready(function($) {
-
 	
 	leftOffset     = 0;		// starting var
-	gutterWidth    = 20; 	// in px
-	transitionTime = 300;  // in ms
+	gutterWidth    = 20;	// in px
+	transitionTime = 300;   // in ms
+
+	/*
+	// set size of gallery-strip so we can start in the middle
+
+	var galleryWidth = 0;
+	
+	// loop over the children of the strip, adding their widths to the var
+	$('.gallery-strip').children('a').each(function() {
+		galleryWidth += $(this).width() + gutterWidth;
+	});
+	*/
+	galleryWidth = 0;
+	galleryWidth = $('.image-wrapper').width();
+	alert(galleryWidth);
+
+
+
 
 	// Gallery behaviour
 	$('.gallery-strip a').click(function() {
