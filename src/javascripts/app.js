@@ -2,7 +2,9 @@
 jQuery(document).ready(function($) {
 
 	
-	leftOffset = 0;
+	leftOffset     = 0;		// starting var
+	gutterWidth    = 20; 	// in px
+	transitionTime = 300;  // in ms
 
 	// Gallery behaviour
 	$('.gallery-strip a').click(function() {
@@ -28,7 +30,7 @@ jQuery(document).ready(function($) {
 
 			event.preventDefault();
 
-			leftOffset += $(this).siblings('.open').width() + 20;
+			leftOffset += $(this).siblings('.open').width() + gutterWidth;
 			//$(this).parents('.image-wrapper').css('left', - leftOffset); 									//- uses left
 			$(this).parents('.image-wrapper').css({"transform":"translate("+-leftOffset+"px,"+0+"px)"});	//- uses translate
 			$(this).siblings('.open').removeClass('open');
@@ -37,10 +39,15 @@ jQuery(document).ready(function($) {
 	});
 
 	// Close overlay
-	$('.overlay, .overlay a').click(function() {
+	$('.overlay').click(function() {
 		event.preventDefault();
+		
+		setTimeout(function(){
+			$('.overlay a').html("");
+		},transitionTime);
+
 		$(this).parents('.wrapper').removeClass('open');
-		$('.overlay a').html("");
+		
 	});
 
 
