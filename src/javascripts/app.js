@@ -9,19 +9,8 @@ jQuery(document).ready(function($) {
 	leftOffset     = 0;		// starting var
 	gutterWidth    = 20;	// in px
 	transitionTime = 300;   // in ms
-
-	/*
-	// set size of gallery-strip so we can start in the middle
-
-	var galleryWidth = 0;
-	
-	// loop over the children of the strip, adding their widths to the var
-	$('.gallery-strip').children('a').each(function() {
-		galleryWidth += $(this).width() + gutterWidth;
-	});
-	*/
-	galleryWidth = 0;
-	galleryWidth = $('.image-wrapper').width();
+	galleryWidth   = $('.image-wrapper').width();
+	imgLink		   = "";
 	
 	var windowWidth = $(window).width();
 	
@@ -68,23 +57,73 @@ jQuery(document).ready(function($) {
 		var imgHtml = '<img src='+imgLink+'>';
 
 		// add file to overlay div
-		$('.overlay div.overlayImage').append(imgHtml);
+		$('.overlay div.overlay-image-wrapper div').append(imgHtml);
 
 		// add class to wrapper to transition overlay div
 		$(this).parents('.wrapper').addClass('open');
 	});
 
 	// Close overlay
-	$('.overlay').click(function(event) {
+/*	$('.overlay').click(function(event) {
 		event.preventDefault();
 		
 		setTimeout(function(){
-			$('.overlay div.overlayImage').html("");
+			$('.overlay div.overlay-image-wrapper div').html("");
 		},transitionTime);
 
 		$(this).parents('.wrapper').removeClass('open');
 		
+	});*/
+
+	// Overlay Image Next/Previous controls & transitions
+	$('.overlay .arrow').click(function(event) {
+		event.preventDefault();
+		var direction = $(this).hasClass('right') ? 1 : -1; // direction = 1 for right and -1 for left, used as a multiplier later
+
+		// get current image displayed
+		currentImage = $(this).siblings('div').children('img').attr('src');
+
+
+		// work out next image
+
+		// get each image
+		$('.image-wrapper a').each(function(i, imgLink) {
+			
+			// get imgLink href
+			imgHref = $(imgLink).attr('href');
+
+			// if imgLink.href matches currentImage		
+			if (imgHref == currentImage) {
+				// get href of next image, set nextImage var
+				if (direction > 0) {
+					nextImage = $(imgLink).next('a').attr('href');
+				} else {
+					nextImage = $(imgLink).prev('a').attr('href');
+				}
+			} 
+		});
+
+		// add file to overlay div after transition time
+		$(this).parents('.wrapper').removeClass('open');
+
+		setTimeout(function(){
+			alert('running timeout');
+			var imgHtml = '<img src='+nextImage+'>';
+			$('.overlay div.overlay-image-wrapper div').append(imgHtml);
+			$(this).parents('.wrapper').addClass('open');
+		},transitionTime*1.1);
+
+
+
+		
+
+
+		
+
+
+
 	});
+
 
 
 

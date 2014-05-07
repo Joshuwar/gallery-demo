@@ -16,7 +16,7 @@ $arrow-size:   40px;
 		opacity: 1;
 		display: block;
 		z-index: 100;
-		div.overlayImage {
+		div.overlay-image-wrapper {
 			top: 0%;
 		}
 	}
@@ -38,7 +38,7 @@ $arrow-size:   40px;
 		transition: all 0.3s ease;
 		top: -300%;
 		// width: 90%;
-		padding: 20px;
+		padding: 10px;
 		background-color: white;
 		position: relative;
 		display: inline-block;
