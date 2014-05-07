@@ -5,6 +5,7 @@
   *******************/
 
 $image-height: 300px;
+$arrow-size:   40px;
 
 
 .wrapper {
@@ -15,9 +16,12 @@ $image-height: 300px;
 		opacity: 1;
 		display: block;
 		z-index: 100;
-		a {
+		div.overlayImage {
 			top: 0%;
 		}
+	}
+	&.open .gallery-strip a.arrow {
+		opacity: 0;
 	}
 }
 
@@ -30,7 +34,7 @@ $image-height: 300px;
 	opacity: 0;
 	transition: all 0.3s ease;
 	text-align: center;
-	a {
+	div {
 		transition: all 0.3s ease;
 		top: -300%;
 		// width: 90%;
@@ -59,7 +63,7 @@ $image-height: 300px;
 		left: 0;
 		white-space: none;
 		transition: all 0.9s ease;
-		padding: 20px;
+		
 		transform: translate(0,0);
 	}
 	img {
@@ -69,7 +73,6 @@ $image-height: 300px;
 	a {
 		transition: all 0.5s ease;
 		float: left;
-		opacity: 0.5;
 		margin-right: 20px;
 		position: relative;
 	}
@@ -77,3 +80,36 @@ $image-height: 300px;
 		opacity: 1;
 	}
 }
+
+a.arrow {
+	position: absolute;
+	top: 50%;
+	display: block;
+	width: $arrow-size;
+	height: $arrow-size;
+	margin-top: -$arrow-size/2;
+	border-radius: $arrow-size/2;
+	background-color: white;
+	z-index:10;
+	left: 30px;
+	opacity: 0.9;
+	text-align: left;
+	padding-top: 7px;
+	padding-left: 14px;
+	font-size: 20px;
+	color: #333;
+	&.right {
+		left: inherit;
+		right: 30px;
+		text-align: right;
+		padding-top: 7px;
+		padding-right: 14px;
+	}
+	&:hover {
+		background-color: #ccc;
+		text-decoration: none;
+	}
+}
+
+
+

@@ -27,7 +27,7 @@ jQuery(document).ready(function($) {
 	
 	// Move thumbnail strip left or right to put the left (or right) most image up against the left of the sreen
 	$('.gallery-strip .arrow').click(function(event) {
-	  var direction = $(this).hasClass('right') ? 1 : -1;
+	  var direction = $(this).hasClass('right') ? 1 : -1; // direction = 1 for right and -1 for left, used as a multiplier later
 
     // figure out which image is half-on, half-off the side of the screen (in the direction we are scrolling)
     var edgeImage;
@@ -60,7 +60,7 @@ jQuery(document).ready(function($) {
 	});
 
 	// Open large image when clicking on thumbnail
-	$('.gallery-strip a').click(function(event) {
+	$('.image-wrapper a').click(function(event) {
 		// Open big image in overlay
 		event.preventDefault();
 		// get address of linked file
@@ -68,7 +68,7 @@ jQuery(document).ready(function($) {
 		var imgHtml = '<img src='+imgLink+'>';
 
 		// add file to overlay div
-		$('.overlay a').append(imgHtml);
+		$('.overlay div.overlayImage').append(imgHtml);
 
 		// add class to wrapper to transition overlay div
 		$(this).parents('.wrapper').addClass('open');
@@ -79,7 +79,7 @@ jQuery(document).ready(function($) {
 		event.preventDefault();
 		
 		setTimeout(function(){
-			$('.overlay a').html("");
+			$('.overlay div.overlayImage').html("");
 		},transitionTime);
 
 		$(this).parents('.wrapper').removeClass('open');
